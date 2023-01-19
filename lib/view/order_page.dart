@@ -36,7 +36,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 99,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -74,7 +74,7 @@ class _OrderPageState extends State<OrderPage> {
                 width: 101,
                 decoration: BoxDecoration(
                   // shape: BoxShape.rectangle,
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -111,7 +111,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 94,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -148,7 +148,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 110,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -182,7 +182,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 110,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -216,7 +216,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 110,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -251,7 +251,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 110,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -285,7 +285,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 101,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
@@ -319,7 +319,7 @@ class _OrderPageState extends State<OrderPage> {
                 height: 40,
                 width: 110,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 0.05),
+                  border: Border.all(color: Colors.grey, width: 0.2),
                   borderRadius: BorderRadius.all(
                     Radius.elliptical(6, 6),
                   ),
