@@ -20,27 +20,27 @@ class _OrderPageState extends State<OrderPage> {
         child: Column(
           children: [
             SizedBox(
-              height: 18,
+              height: 12,
             ),
             _pitsaVSFilter(),
             SizedBox(
-              height: 20,
+              height: 12,
             ),
             birinchiPizzaContainer(),
             SizedBox(
-              height: 20,
+              height: 12,
             ),
             ikkinchiPizzaContainer(),
             SizedBox(
-              height: 20,
+              height: 12,
             ),
             uchunchiPizzaContainer(),
             SizedBox(
-              height: 20,
+              height: 12,
             ),
             turtinchiPizzaContainer(),
             SizedBox(
-              height: 20,
+              height: 12,
             ),
             beshinchiPizzaContainer()
           ],
