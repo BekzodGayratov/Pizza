@@ -26,7 +26,280 @@ class _OrderPageState extends State<OrderPage> {
             SizedBox(
               height: 12,
             ),
-            birinchiPizzaContainer(),
+            InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  elevation: 500,
+                  isScrollControlled: false,
+                  context: context,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(12))),
+                  builder: (context) => Center(
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 24,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 110),
+                          child: Text(
+                            "Пепперони по-деревенски",
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: 350,
+                                height: 108,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                      color: Colors.grey, width: 0.2),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.elliptical(12, 12),
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 12),
+                                    child: Container(
+                                      width: 84,
+                                      height: 84,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/chikenPizza.png"), 
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 12,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 65),
+                                        child: Text(
+                                          "Чикен Сладкий Чили",
+                                          style: GoogleFonts.inter(
+                                            textStyle: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 45),
+                                        child: Text(
+                                          "Традиционное тесто, 23 см",
+                                          style: GoogleFonts.inter(
+                                            textStyle: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                     
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 120),
+                                        child: Container(
+                                          width: 92,
+                                          height: 32,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.elliptical(6, 6),
+                                            ),
+                                            color: Color.fromRGBO(
+                                                255, 238, 226, 1),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "от 499 ₽",
+                                              style: GoogleFonts.inter(
+                                                textStyle: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color.fromRGBO(
+                                                      255, 112, 16, 1),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 350,
+                      height: 124,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.green, width: 0.2),
+                        borderRadius: BorderRadius.all(
+                          Radius.elliptical(12, 12),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 12),
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/chikenPizza.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 12,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 65),
+                              child: Text(
+                                "Чикен Сладкий Чили",
+                                style: GoogleFonts.inter(
+                                  textStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              "Курица, Лук, Перец Халапеньо, Сыр",
+                              style: GoogleFonts.inter(
+                                textStyle: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Моцарелла, Томатный соус, Соус...",
+                              style: GoogleFonts.inter(
+                                textStyle: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 120),
+                              child: Container(
+                                width: 93,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.elliptical(6, 6),
+                                  ),
+                                  color: Color.fromRGBO(255, 238, 226, 1),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "от 499 ₽",
+                                    style: GoogleFonts.inter(
+                                      textStyle: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color.fromRGBO(255, 112, 16, 1),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Positioned(
+                      top: 8,
+                      child: Container(
+                        width: 44,
+                        height: 22,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(6),
+                              topRight: Radius.circular(6),
+                            ),
+                            color: Colors.red),
+                        child: Center(
+                          child: Text(
+                            "NEW",
+                            style: GoogleFonts.inter(
+                              textStyle: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             SizedBox(
               height: 12,
             ),
@@ -531,139 +804,6 @@ class _OrderPageState extends State<OrderPage> {
               child: Center(
                 child: Text(
                   "ХИТ",
-                  style: GoogleFonts.inter(
-                    textStyle: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Padding birinchiPizzaContainer() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Stack(
-        children: [
-          Container(
-            width: 350,
-            height: 124,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.green, width: 0.2),
-              borderRadius: BorderRadius.all(
-                Radius.elliptical(12, 12),
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/chikenPizza.png"),
-                    ),
-                  ),
-                ),
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 65),
-                    child: Text(
-                      "Чикен Сладкий Чили",
-                      style: GoogleFonts.inter(
-                        textStyle: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    "Курица, Лук, Перец Халапеньо, Сыр",
-                    style: GoogleFonts.inter(
-                      textStyle: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "Моцарелла, Томатный соус, Соус...",
-                    style: GoogleFonts.inter(
-                      textStyle: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 120),
-                    child: Container(
-                      width: 93,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.elliptical(6, 6),
-                        ),
-                        color: Color.fromRGBO(255, 238, 226, 1),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "от 499 ₽",
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromRGBO(255, 112, 16, 1),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-          Positioned(
-            top: 8,
-            child: Container(
-              width: 44,
-              height: 22,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(6),
-                    topRight: Radius.circular(6),
-                  ),
-                  color: Colors.red),
-              child: Center(
-                child: Text(
-                  "NEW",
                   style: GoogleFonts.inter(
                     textStyle: TextStyle(
                       fontSize: 12,
