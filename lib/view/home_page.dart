@@ -1,8 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:pizza/core/helper/mask_input_formatter.dart';
 import 'package:pizza/data/model/pizza_model.dart';
+import 'package:pizza/provider/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,6 +27,15 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => HomeProvider(),
+        builder: (context, child) => _scaffold(context),
+      )
+    ]);
+  }
+
+  Scaffold _scaffold(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xffE5E5E5),
         appBar: _appBar(),
@@ -246,18 +255,38 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                          backgroundColor: Colors.orange.shade700),
-                      onPressed: () {},
-                      child: const Text("Delivery",style: TextStyle(fontSize: 20),)),
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          backgroundColor:
+                              context.watch<HomeProvider>().isDelivery
+                                  ? Colors.orange.shade700
+                                  : Colors.white),
+                      onPressed: () {
+                        context.read<HomeProvider>().changeState();
+                      },
+                      child: const Text(
+                        "Delivery",
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                      )),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 50),
-                          backgroundColor: Colors.orange.shade700),
-                      onPressed: () {},
-                      child: const Text("Pickup",style: TextStyle(fontSize: 20),))
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          backgroundColor:
+                              context.watch<HomeProvider>().isPickUp
+                                  ? Colors.orange.shade700
+                                  : Colors.white),
+                      onPressed: () {context.read<HomeProvider>().changeState();},
+                      child: const Text(
+                        "Pickup",
+                        style: TextStyle(fontSize: 20, color: Colors.black),
+                      ))
                 ],
-              )
+              ),
+              Visibility(
+                visible: context.watch<HomeProvider>().isDelivery,
+                child: Text("Delivery")),
+                Visibility(
+                visible: context.watch<HomeProvider>().isPickUp,
+                child: Text("pick up"))
             ],
           ),
         ));
