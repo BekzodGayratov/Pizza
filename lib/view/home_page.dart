@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:pizza/core/helper/mask_input_formatter.dart';
 import 'package:pizza/data/model/pizza_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // Sample for model of data
   static final List<MyModel> _list = [
     MyModel("Neapolitan Pizza", 16,
         "https://w7.pngwing.com/pngs/253/72/png-transparent-neapolitan-pizza-neapolitan-cuisine-italian-cuisine-pizza-margherita-tomato-pizza-food-recipe-sicilian-pizza.png"),
@@ -19,35 +23,322 @@ class _HomePageState extends State<HomePage> {
     MyModel("Sicilian Pizza", 20,
         "https://images.squarespace-cdn.com/content/v1/5c6344ceab1a621d954f6a13/a384f434-3b22-491d-aa1f-4c784f8d7385/sicilian-cheese-pizza.jpg"),
     MyModel("Greek Pizza", 15,
-        "https://www.pngfind.com/pngs/m/398-3988664_true-greek-goodness-california-style-pizza-hd-png.png")
+        "https://www.pngfind.com/pngs/m/398-3988664_true-greek-goodness-california-style-pizza-hd-png.png"),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffE5E5E5),
-      appBar: AppBar(
-        title: const Text("Pizza"),
+        backgroundColor: const Color(0xffE5E5E5),
+        appBar: _appBar(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Your order",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              // this is for list
+              SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  width: MediaQuery.of(context).size.width,
+                  child: _orderList()),
+              _divider(),
+              _promoKod(),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Total: summa ",
+                      style: TextStyle(
+                          color: Colors.orange,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
+              _divider(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Add to order",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.13,
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 10,
+                    ),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _list.length,
+                    itemBuilder: (BuildContext context, int index) => Container(
+                        height: MediaQuery.of(context).size.height * 0.11,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Center(
+                            child: ListTile(
+                          leading:
+                              Image.network(_list[index].imgUrl.toString()),
+                          title: Text(_list[index].productName.toString()),
+                          subtitle: Text(_list[index].sum.toString()),
+                        ))),
+                  ),
+                ),
+              ),
+              _divider(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Sous",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.13,
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 10,
+                    ),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _list.length,
+                    itemBuilder: (BuildContext context, int index) => Container(
+                        height: MediaQuery.of(context).size.height * 0.11,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Center(
+                            child: ListTile(
+                          leading:
+                              Image.network(_list[index].imgUrl.toString()),
+                          title: Text(_list[index].productName.toString()),
+                          subtitle: Text(_list[index].sum.toString()),
+                        ))),
+                  ),
+                ),
+              ),
+              _divider(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Personal details",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    // name
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: TextFormField(
+                          keyboardType: TextInputType.name,
+                          decoration: const InputDecoration(
+                              labelText: "Name",
+                              fillColor: Colors.white,
+                              filled: true,
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(style: BorderStyle.none)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(style: BorderStyle.none)))),
+                    ),
+                    // phone number
+                    TextFormField(
+                        inputFormatters: [MaskInput().phoneController],
+                        keyboardType: TextInputType.phone,
+                        decoration: const InputDecoration(
+                            hintText: "+998",
+                            labelText: "Phone",
+                            fillColor: Colors.white,
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(style: BorderStyle.none)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(style: BorderStyle.none)))),
+                    // email
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: TextFormField(
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                              labelText: "Email",
+                              fillColor: Colors.white,
+                              filled: true,
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(style: BorderStyle.none)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(style: BorderStyle.none)))),
+                    ),
+                  ],
+                ),
+              ),
+              _divider(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Delivery",
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                          backgroundColor: Colors.orange.shade700),
+                      onPressed: () {},
+                      child: const Text("Delivery",style: TextStyle(fontSize: 20),)),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 50),
+                          backgroundColor: Colors.orange.shade700),
+                      onPressed: () {},
+                      child: const Text("Pickup",style: TextStyle(fontSize: 20),))
+                ],
+              )
+            ],
+          ),
+        ));
+  }
+
+  Padding _divider() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Divider(
+        thickness: 2,
       ),
-      body: ListView.builder(
-        itemCount: _list.length,
-        itemBuilder: (context, index) {
-          return Container(
+    );
+  }
+
+  Padding _promoKod() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      child: TextFormField(
+        inputFormatters: [MaskInput().controller],
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            fillColor: Colors.white,
+            filled: true,
+            suffixIcon:
+                IconButton(onPressed: () {}, icon: const Icon(Icons.send)),
+            hintText: "Promokod",
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(style: BorderStyle.none)),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(style: BorderStyle.none))),
+      ),
+    );
+  }
+
+  Widget _orderList() {
+    return ListView.builder(
+      itemExtent: 120,
+      itemCount: _list.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
-              height: MediaQuery.of(context).size.height * 0.20,
+              height: MediaQuery.of(context).size.height * 0.15,
               width: MediaQuery.of(context).size.width,
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: ListTile(
                 title: Text(_list[index].productName.toString()),
                 leading: Container(
                   height: MediaQuery.of(context).size.height * 0.30,
-                  width: MediaQuery.of(context).size.width * 0.30,
+                  width: MediaQuery.of(context).size.width * 0.20,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(_list[index].imgUrl.toString()),fit: BoxFit.fill)),
+                          image: NetworkImage(_list[index].imgUrl.toString()),
+                          fit: BoxFit.fill)),
                 ),
-              ));
-        },
+              )),
+        );
+      },
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      elevation: 0.0,
+      backgroundColor: Colors.white,
+      leading: const Image(image: AssetImage("assets/images/pizza.png")),
+      title: const Text(
+        "Pizza",
+        style: TextStyle(color: Colors.black),
       ),
+      actions: [
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu_rounded,
+              color: Colors.black,
+              size: 30,
+            ))
+      ],
     );
   }
 }
