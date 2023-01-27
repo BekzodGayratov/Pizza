@@ -52,11 +52,11 @@ class HomePage extends StatelessWidget {
                 "Спасибо за заказ!",
                 style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
               ),
-              Text(
+              const Text(
                 "Примерное время доставки 45 минут. Статус",
                 style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
               ),
-              Text(
+              const Text(
                 "отследить можно нажав на кнопку ниже",
                 style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
               ),
@@ -290,3 +290,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+  

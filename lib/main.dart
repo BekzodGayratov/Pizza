@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizza/view/home_page.dart';
+import 'package:pizza/view/register.dart';
 
 void main() {
   runApp(Myapp());
@@ -10,9 +11,9 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Register(),
     );  
   }
 }
