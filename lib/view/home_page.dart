@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizza/core/helper/mask_input_formatter.dart';
 import 'package:pizza/data/model/pizza_model.dart';
-import 'package:pizza/provider/home_provider.dart';
+import 'package:pizza/provider/basket_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,269 +27,308 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(
-        create: (context) => HomeProvider(),
-        builder: (context, child) => _scaffold(context),
-      )
-    ]);
+    Size size = MediaQuery.of(context).size;
+    BasketProvider providerWatch = context.watch<BasketProvider>();
+    BasketProvider providerRead = context.read<BasketProvider>();
+    return ChangeNotifierProvider(create: (context) => BasketProvider(),builder: (context, child) {
+      return Scaffold(
+              backgroundColor: const Color(0xffE5E5E5),
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _text("Your order", 18.0, Colors.black,
+                          MainAxisAlignment.start),
+                      // this is for list
+                      SizedBox(
+                          height: size.height * 0.7,
+                          width: size.width,
+                          child: _orderList()),
+                      _divider(),
+                      _promoKod(),
+                      _text("Total: summa", 20.0, Colors.orange,
+                          MainAxisAlignment.center),
+                      _divider(),
+                      _text("Add to order", 18.0, Colors.black,
+                          MainAxisAlignment.start),
+
+                      // FOR ADDTIONAL
+                      SizedBox(
+                        height: size.height * 0.13,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: ListView.separated(
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(
+                              width: 10,
+                            ),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _list.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                Container(
+                                    height: size.height * 0.11,
+                                    width: 300,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Center(
+                                        child: ListTile(
+                                      leading: Image.network(
+                                          _list[index].imgUrl.toString()),
+                                      title: Text(
+                                          _list[index].productName.toString()),
+                                      subtitle:
+                                          Text(_list[index].sum.toString()),
+                                    ))),
+                          ),
+                        ),
+                      ),
+                      _divider(),
+                      _text(
+                          "Sous", 18.0, Colors.black, MainAxisAlignment.start),
+
+                      //   FOR SOUS
+                      SizedBox(
+                        height: size.height * 0.13,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: ListView.separated(
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(
+                              width: 10,
+                            ),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _list.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                Container(
+                                    height: size.height * 0.11,
+                                    width: 300,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Center(
+                                        child: ListTile(
+                                      leading: Image.network(
+                                          _list[index].imgUrl.toString()),
+                                      title: Text(
+                                          _list[index].productName.toString()),
+                                      subtitle:
+                                          Text(_list[index].sum.toString()),
+                                    ))),
+                          ),
+                        ),
+                      ),
+                      _divider(),
+                      _text("Personal details", 18.0, Colors.black,
+                          MainAxisAlignment.start),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          children: [
+                            // name
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: _textFormField(
+                                  TextInputType.name, "Name", "", Colors.white,providerWatch.userNameController),
+                            ),
+                            // phone number
+                            TextFormField(
+                                inputFormatters: [MaskInput().phoneController],
+                                keyboardType: TextInputType.phone,
+                                decoration: const InputDecoration(
+                                    hintText: "+998",
+                                    labelText: "Phone",
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            style: BorderStyle.none)),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            style: BorderStyle.none)))),
+                            // email
+                            Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                child: _textFormField(
+                                    TextInputType.emailAddress,
+                                    "Email",
+                                    "",
+                                    Colors.white,providerWatch.emailController)),
+                          ],
+                        ),
+                      ),
+                      _divider(),
+                      _text("Delivery", 18.0, Colors.black,
+                          MainAxisAlignment.start),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 50),
+                                  backgroundColor: providerWatch.isDelivery
+                                      ? Colors.orange.shade700
+                                      : Colors.white),
+                              onPressed: () {
+                                providerRead.changeState();
+                              },
+                              child: const Text(
+                                "Delivery",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              )),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 50),
+                                  backgroundColor: providerWatch.isPickUp
+                                      ? Colors.orange.shade700
+                                      : Colors.white),
+                              onPressed: () {
+                                providerRead.changeState();
+                              },
+                              child: const Text(
+                                "Pickup",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              ))
+                        ],
+                      ),
+                      Visibility(
+                          visible: providerWatch.isDelivery,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                        width: size.width * 0.65,
+                                        child: _textFormField(
+                                            TextInputType.streetAddress,
+                                            "Street",
+                                            "Broadway",
+                                            Colors.white,providerWatch.streetNameController)),
+                                    SizedBox(
+                                        width: size.width * 0.2,
+                                        child: _textFormField(
+                                            TextInputType.text,
+                                            "Home",
+                                            "1A",
+                                            Colors.white,providerWatch.homeNameController))
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                        width: size.width * 0.45,
+                                        child: _textFormField(
+                                            TextInputType.number,
+                                            "Entrance",
+                                            "1",
+                                            Colors.white,providerWatch.entranceNumController)),
+                                    SizedBox(
+                                        width: size.width * 0.4,
+                                        child: _textFormField(
+                                            TextInputType.number,
+                                            "Floor",
+                                            "2",
+                                            Colors.white,providerWatch.floorNumController))
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                        width: size.width * 0.43,
+                                        child: _textFormField(
+                                            TextInputType.number,
+                                            "Apartment",
+                                            "3",
+                                            Colors.white,providerWatch.apartmentNumController)),
+                                    SizedBox(
+                                        width: size.width * 0.43,
+                                        child: _textFormField(
+                                            TextInputType.number,
+                                            "Intercom",
+                                            "0000",
+                                            Colors.white,providerWatch.intercomNumController))
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )),
+                      Visibility(
+                          visible: providerWatch.isPickUp,
+                          child: Column(
+                            children: const [
+                              Text("Pick up"),
+                            ],
+                          )),
+                    _text("Payment", 18.0, Colors.black, MainAxisAlignment.start)
+                    ],
+                  ),
+                ),
+              ));
+    },);
   }
 
-  Scaffold _scaffold(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color(0xffE5E5E5),
-        appBar: _appBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Your order",
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              // this is for list
-              SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  width: MediaQuery.of(context).size.width,
-                  child: _orderList()),
-              _divider(),
-              _promoKod(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Total: summa ",
-                      style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-              _divider(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Add to order",
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.13,
-                width: double.infinity,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      width: 10,
-                    ),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _list.length,
-                    itemBuilder: (BuildContext context, int index) => Container(
-                        height: MediaQuery.of(context).size.height * 0.11,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Center(
-                            child: ListTile(
-                          leading:
-                              Image.network(_list[index].imgUrl.toString()),
-                          title: Text(_list[index].productName.toString()),
-                          subtitle: Text(_list[index].sum.toString()),
-                        ))),
-                  ),
-                ),
-              ),
-              _divider(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Sous",
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.13,
-                width: double.infinity,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      width: 10,
-                    ),
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _list.length,
-                    itemBuilder: (BuildContext context, int index) => Container(
-                        height: MediaQuery.of(context).size.height * 0.11,
-                        width: 300,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: Center(
-                            child: ListTile(
-                          leading:
-                              Image.network(_list[index].imgUrl.toString()),
-                          title: Text(_list[index].productName.toString()),
-                          subtitle: Text(_list[index].sum.toString()),
-                        ))),
-                  ),
-                ),
-              ),
-              _divider(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Personal details",
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    // name
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: TextFormField(
-                          keyboardType: TextInputType.name,
-                          decoration: const InputDecoration(
-                              labelText: "Name",
-                              fillColor: Colors.white,
-                              filled: true,
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(style: BorderStyle.none)),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(style: BorderStyle.none)))),
-                    ),
-                    // phone number
-                    TextFormField(
-                        inputFormatters: [MaskInput().phoneController],
-                        keyboardType: TextInputType.phone,
-                        decoration: const InputDecoration(
-                            hintText: "+998",
-                            labelText: "Phone",
-                            fillColor: Colors.white,
-                            filled: true,
-                            focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(style: BorderStyle.none)),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(style: BorderStyle.none)))),
-                    // email
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                              labelText: "Email",
-                              fillColor: Colors.white,
-                              filled: true,
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(style: BorderStyle.none)),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(style: BorderStyle.none)))),
-                    ),
-                  ],
-                ),
-              ),
-              _divider(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Delivery",
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 50),
-                          backgroundColor:
-                              context.watch<HomeProvider>().isDelivery
-                                  ? Colors.orange.shade700
-                                  : Colors.white),
-                      onPressed: () {
-                        context.read<HomeProvider>().changeState();
-                      },
-                      child: const Text(
-                        "Delivery",
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      )),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 50),
-                          backgroundColor:
-                              context.watch<HomeProvider>().isPickUp
-                                  ? Colors.orange.shade700
-                                  : Colors.white),
-                      onPressed: () {context.read<HomeProvider>().changeState();},
-                      child: const Text(
-                        "Pickup",
-                        style: TextStyle(fontSize: 20, color: Colors.black),
-                      ))
-                ],
-              ),
-              Visibility(
-                visible: context.watch<HomeProvider>().isDelivery,
-                child: Text("Delivery")),
-                Visibility(
-                visible: context.watch<HomeProvider>().isPickUp,
-                child: Text("pick up"))
-            ],
+  TextFormField _textFormField(TextInputType keyboardType, String labelText,
+      String hintText, Color fillColor, TextEditingController controller) {
+    return TextFormField(
+      controller: controller,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+          labelText: labelText,
+          hintText: hintText,
+          fillColor: fillColor,
+          filled: true,
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(style: BorderStyle.none)),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(style: BorderStyle.none))),
+    );
+  }
+
+  Padding _text(
+      String text, double fontSize, Color color, MainAxisAlignment alignment) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Row(
+        mainAxisAlignment: alignment,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+                fontSize: fontSize, color: color, fontWeight: FontWeight.bold),
           ),
-        ));
+        ],
+      ),
+    );
   }
 
   Padding _divider() {
@@ -305,7 +344,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: TextFormField(
-        inputFormatters: [MaskInput().controller],
+        inputFormatters: [MaskInput().promocodController],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
             fillColor: Colors.white,
@@ -321,7 +360,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _orderList() {
+  ListView _orderList() {
     return ListView.builder(
       itemExtent: 120,
       itemCount: _list.length,
@@ -347,27 +386,6 @@ class _HomePageState extends State<HomePage> {
               )),
         );
       },
-    );
-  }
-
-  AppBar _appBar() {
-    return AppBar(
-      elevation: 0.0,
-      backgroundColor: Colors.white,
-      leading: const Image(image: AssetImage("assets/images/pizza.png")),
-      title: const Text(
-        "Pizza",
-        style: TextStyle(color: Colors.black),
-      ),
-      actions: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu_rounded,
-              color: Colors.black,
-              size: 30,
-            ))
-      ],
     );
   }
 }
