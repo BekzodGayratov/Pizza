@@ -12,6 +12,7 @@ class BasketProvider extends ChangeNotifier {
   TextEditingController floorNumController = TextEditingController();
   TextEditingController apartmentNumController = TextEditingController();
   TextEditingController intercomNumController = TextEditingController();
+  TextEditingController changeNumController = TextEditingController();
 
   // VARIABLES
   bool isClicked=false;
