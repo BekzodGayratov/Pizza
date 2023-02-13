@@ -309,13 +309,40 @@ class _HomePageState extends State<HomePage> {
                     _checkBox(true, "No change"),
                     _checkBox(true, "Delivery from:"),
                      Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 15),
                               child: _textFormField(
                                   TextInputType.number,
                                   "",
                                   "0",
                                   Colors.white,
                                   providerWatch.changeNumController)),
+                    _text("Commentary", 18.0, Colors.black, MainAxisAlignment.start),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: TextFormField(
+                        maxLines: 5,
+                        decoration: const InputDecoration(
+                          hintText: "Any comments?",
+                          contentPadding: EdgeInsets.only(bottom: 100,top: 5,left: 5,right: 5),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Container(
+                        height: size.height *0.08,
+                        color: Colors.white,
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                          _text("Total: ", 19.0, Colors.orange, MainAxisAlignment.start),
+                          ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(backgroundColor: Colors.orange), child: const Text("Checkout"),)
+                        ],),
+                      ),
+                    )
                   ],
                 ),
               ),
