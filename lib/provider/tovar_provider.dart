@@ -19,9 +19,10 @@ class TovarProvider extends ChangeNotifier {
   void burn() {
     if (w == false) {
       w = true;
+      v = false;
       notifyListeners();
-     
     } else {
+      v = false;
       w = false;
       notifyListeners();
     }
@@ -29,10 +30,12 @@ class TovarProvider extends ChangeNotifier {
 
   void tenkoe() {
     if (v == false) {
+      w = false;
       v = true;
       notifyListeners();
-    }  else {
+    } else {
       v = false;
+      w = false;
       notifyListeners();
     }
   }
@@ -53,7 +56,7 @@ class TovarProvider extends ChangeNotifier {
   void olcham(int index) {
     if (isLoading2[index] == false) {
       isLoading2[index] = true;
-     
+
       notifyListeners();
     } else {
       isLoading2[index] = false;

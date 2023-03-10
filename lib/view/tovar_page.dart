@@ -14,6 +14,7 @@ class TovarPage extends StatefulWidget {
 class _TovarPageState extends State<TovarPage> {
   @override
   Widget build(BuildContext context) {
+   
 
     return ChangeNotifierProvider(
       create: (context) => TovarProvider(),
@@ -25,19 +26,21 @@ class _TovarPageState extends State<TovarPage> {
   }
 
   Scaffold _scaffold(BuildContext context) {
+     double width = MediaQuery.of(context).size.width;
+    double heigth = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView.builder(
         itemBuilder: (context, index) {
           return Padding(
-            padding:  EdgeInsets.only(top: MediaQuery.of(context).size.width*0.001),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.width * 0.001),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    
                     children: [
                       Container(
                         width: 69,
@@ -100,12 +103,12 @@ class _TovarPageState extends State<TovarPage> {
                             width: 18,
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 11.0, top: 13.0),
+                         Padding(
+                          padding:const EdgeInsets.only(left: 11.0, top: 13.0),
                           child: Text(
                             "Пепперони по-деревенски",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: width*0.01,
                             ),
                           ),
                         )
@@ -114,8 +117,7 @@ class _TovarPageState extends State<TovarPage> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                     children: [
-                      
+                    children: [
                       Container(
                         width: 90,
                         height: 90,
@@ -206,64 +208,64 @@ class _TovarPageState extends State<TovarPage> {
                       )
                     ],
                   ),
-                 
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      
                       children: [
-                        
                         Text(
                           "Моцарелла",
-                          style: TextStyle(color: (context
-                                          .watch<TovarProvider>()
-                                          .isLoading[0]
-                                      ? 
-                                       Colors.black: Colors.blueGrey) , fontSize: 12),
+                          style: TextStyle(
+                              color:
+                                  (context.watch<TovarProvider>().isLoading[0]
+                                      ? Colors.black
+                                      : Colors.blueGrey),
+                              fontSize: width*0.0095),
                         ),
-                      
-                         Column(
-                            children:  [
-                              Text(
-                                "Огурцы",
-                                style: TextStyle(
-                                   color: (context
+                        Column(
+                          children: [
+                            Text(
+                              "Огурцы",
+                              style: TextStyle(
+                              fontSize: width*0.0095,
+
+                                  color: (context
                                           .watch<TovarProvider>()
                                           .isLoading[1]
-                                      ? 
-                                       Colors.black: Colors.blueGrey) ),
-                              ),
-                              Text(
-                                "маринованные",
-                                style: TextStyle(
-                                    color: (context
+                                      ? Colors.black
+                                      : Colors.blueGrey)),
+                            ),
+                            Text(
+                              "маринованные",
+                              style: TextStyle(
+                              fontSize: width*0.0095,
+
+                                  color: (context
                                           .watch<TovarProvider>()
                                           .isLoading[1]
-                                      ? 
-                                       Colors.black: Colors.blueGrey) ),
-                              ),
-                            ],
-                          ),
-                        
-                         Text(
+                                      ? Colors.black
+                                      : Colors.blueGrey)),
+                            ),
+                          ],
+                        ),
+                        Text(
                           "Пепперони",
-                          style: TextStyle(color: (context
-                                          .watch<TovarProvider>()
-                                          .isLoading[2]
-                                      ? 
-                                       Colors.black: Colors.blueGrey) , fontSize: 12),
+                          style: TextStyle(
+                              color:
+                                  (context.watch<TovarProvider>().isLoading[2]
+                                      ? Colors.black
+                                      : Colors.blueGrey),
+                              fontSize: width*0.0095),
+                              
                         ),
-                        
-                         Text(
+                        Text(
                           "Томатный соус",
-                          style: TextStyle(color: (context
-                                          .watch<TovarProvider>()
-                                          .isLoading[3]
-                                      ? 
-                                       Colors.black: Colors.blueGrey) , fontSize: 12),
+                          style: TextStyle(
+                              color:
+                                  (context.watch<TovarProvider>().isLoading[3]
+                                      ? Colors.black
+                                      : Colors.blueGrey),
+                              fontSize: width*0.0095),
                         ),
-                         
                       ]),
-                  
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Card(
@@ -278,11 +280,11 @@ class _TovarPageState extends State<TovarPage> {
                               width: 150,
                               height: 44,
                               // ignore: sort_child_properties_last
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
                                   "Традиционное",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
+                                      color: Colors.black, fontSize: width*0.0095),
                                 ),
                               ),
                               decoration: BoxDecoration(
@@ -309,10 +311,10 @@ class _TovarPageState extends State<TovarPage> {
                                       ? const Color(0xffFF7010)
                                       : Colors.white,
                                 ),
-                                child: const Center(
+                                child:  Center(
                                   child: Text(
                                     "Тонкое",
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(fontSize: width*0.0095),
                                   ),
                                 ),
                               ),
@@ -336,8 +338,8 @@ class _TovarPageState extends State<TovarPage> {
                               context.read<TovarProvider>().olcham(0);
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.2 ,
-                              height:  MediaQuery.of(context).size.height*0.07,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              height: MediaQuery.of(context).size.height * 0.07,
                               // ignore: sort_child_properties_last
                               child: const Center(
                                 child: Text(
@@ -348,7 +350,12 @@ class _TovarPageState extends State<TovarPage> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color:context.watch<TovarProvider>().isLoading2[0]==false?Colors.white: const Color(0xffFF7010),
+                                color: context
+                                            .watch<TovarProvider>()
+                                            .isLoading2[0] ==
+                                        false
+                                    ? Colors.white
+                                    : const Color(0xffFF7010),
                               ),
                             ),
                           ),
@@ -356,18 +363,24 @@ class _TovarPageState extends State<TovarPage> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 13, horizontal: 20),
                             child: InkWell(
-                                     onTap: () {
-                              context.read<TovarProvider>().olcham(1);
-                            },
-                                  child: Container(
-                              width: MediaQuery.of(context).size.width*0.2 ,
-                              height:  MediaQuery.of(context).size.height*0.07,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                 color:context.watch<TovarProvider>().isLoading2[1]==false?Colors.white: const Color(0xffFF7010),
-                              ),
-                              child:const  Center(
-                                child: Text(
+                              onTap: () {
+                                context.read<TovarProvider>().olcham(1);
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: context
+                                              .watch<TovarProvider>()
+                                              .isLoading2[1] ==
+                                          false
+                                      ? Colors.white
+                                      : const Color(0xffFF7010),
+                                ),
+                                child: const Center(
+                                  child: Text(
                                     "28 см",
                                     style: TextStyle(fontSize: 14),
                                   ),
@@ -380,19 +393,24 @@ class _TovarPageState extends State<TovarPage> {
                               vertical: 13,
                             ),
                             child: InkWell(
-                                     onTap: () {
-                              context.read<TovarProvider>().olcham(2);
-                            },
-                                  child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                               color:context.watch<TovarProvider>().isLoading2[2]==false?
-                               Colors.white: const Color(0xffFF7010),
-                              ),
-                               width: MediaQuery.of(context).size.width*0.2 ,
-                              height:  MediaQuery.of(context).size.height*0.07,
-                              child:const  Center(
-                                child: Text(
+                              onTap: () {
+                                context.read<TovarProvider>().olcham(2);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  color: context
+                                              .watch<TovarProvider>()
+                                              .isLoading2[2] ==
+                                          false
+                                      ? Colors.white
+                                      : const Color(0xffFF7010),
+                                ),
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.07,
+                                child: const Center(
+                                  child: Text(
                                     "33 см",
                                     style: TextStyle(fontSize: 14),
                                   ),
@@ -408,15 +426,13 @@ class _TovarPageState extends State<TovarPage> {
                     height: 20,
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(left: MediaQuery.of(context).size.height*0.05),
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.height * 0.05),
                     child: const Text("Добавьте в пиццу"),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                   
                     children: [
-                      
-                      
                       Container(
                         width: 90,
                         height: 90,
@@ -479,34 +495,30 @@ class _TovarPageState extends State<TovarPage> {
                           ),
                         ),
                       ),
-                     Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            color: context.watch<TovarProvider>().isLoading1[3]
-                                ? Colors.white
-                                : const Color(0xffFF7010),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Card(
-                            child: IconButton(
-                              onPressed: () {
-                                context.read<TovarProvider>().pizza(3);
-                              },
-                              icon: Image.asset("assets/olma.png",
-                                  fit: BoxFit.fill),
-                            ),
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          color: context.watch<TovarProvider>().isLoading1[3]
+                              ? Colors.white
+                              : const Color(0xffFF7010),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Card(
+                          child: IconButton(
+                            onPressed: () {
+                              context.read<TovarProvider>().pizza(3);
+                            },
+                            icon: Image.asset("assets/olma.png",
+                                fit: BoxFit.fill),
                           ),
                         ),
-                      
+                      ),
                     ],
                   ),
-                  
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      
                       children: [
-                        
                         Column(
                           children: const [
                             Text(
@@ -522,20 +534,19 @@ class _TovarPageState extends State<TovarPage> {
                           ],
                         ),
                         Column(
-                            children: const [
-                              Text(
-                                "Шампиньоны",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 12),
-                              ),
-                              Text(
-                                "59 ₽",
-                                style: TextStyle(
-                                    color: Color(0xffFF7010), fontSize: 14),
-                              ),
-                            ],
-                          ),
-                        
+                          children: const [
+                            Text(
+                              "Шампиньоны",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                            Text(
+                              "59 ₽",
+                              style: TextStyle(
+                                  color: Color(0xffFF7010), fontSize: 14),
+                            ),
+                          ],
+                        ),
                         Column(
                           children: const [
                             Text(
@@ -550,7 +561,6 @@ class _TovarPageState extends State<TovarPage> {
                             ),
                           ],
                         ),
-                        
                         Column(
                           children: const [
                             Text(
@@ -569,11 +579,8 @@ class _TovarPageState extends State<TovarPage> {
                                   color: Color(0xffFF7010), fontSize: 14),
                             ),
                           ],
-                          
                         ),
-                        
                       ]),
-                 
                   Card(
                     elevation: 20,
                     child: Row(
