@@ -108,7 +108,7 @@ class _TovarPageState extends State<TovarPage> {
                           child: Text(
                             "Пепперони по-деревенски",
                             style: TextStyle(
-                              fontSize: width*0.01,
+                              fontSize: width*0.03,
                             ),
                           ),
                         )
@@ -218,14 +218,14 @@ class _TovarPageState extends State<TovarPage> {
                                   (context.watch<TovarProvider>().isLoading[0]
                                       ? Colors.black
                                       : Colors.blueGrey),
-                              fontSize: width*0.0095),
+                              fontSize: width*0.025),
                         ),
                         Column(
                           children: [
                             Text(
                               "Огурцы",
                               style: TextStyle(
-                              fontSize: width*0.0095,
+                              fontSize: width*0.025,
 
                                   color: (context
                                           .watch<TovarProvider>()
@@ -236,7 +236,7 @@ class _TovarPageState extends State<TovarPage> {
                             Text(
                               "маринованные",
                               style: TextStyle(
-                              fontSize: width*0.0095,
+                              fontSize: width*0.025,
 
                                   color: (context
                                           .watch<TovarProvider>()
@@ -253,7 +253,7 @@ class _TovarPageState extends State<TovarPage> {
                                   (context.watch<TovarProvider>().isLoading[2]
                                       ? Colors.black
                                       : Colors.blueGrey),
-                              fontSize: width*0.0095),
+                              fontSize: width*0.025),
                               
                         ),
                         Text(
@@ -263,15 +263,16 @@ class _TovarPageState extends State<TovarPage> {
                                   (context.watch<TovarProvider>().isLoading[3]
                                       ? Colors.black
                                       : Colors.blueGrey),
-                              fontSize: width*0.0095),
+                              fontSize: width*0.025),
                         ),
                       ]),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Card(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          const SizedBox(width: 20,),
                           InkWell(
                             onTap: (() {
                               context.read<TovarProvider>().burn();
@@ -284,7 +285,7 @@ class _TovarPageState extends State<TovarPage> {
                                 child: Text(
                                   "Традиционное",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: width*0.0095),
+                                      color: Colors.black, fontSize: width*0.03),
                                 ),
                               ),
                               decoration: BoxDecoration(
@@ -297,7 +298,7 @@ class _TovarPageState extends State<TovarPage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 60),
+                                vertical: 13, horizontal: 50),
                             child: InkWell(
                               onTap: () {
                                 context.read<TovarProvider>().tenkoe();
@@ -314,7 +315,7 @@ class _TovarPageState extends State<TovarPage> {
                                 child:  Center(
                                   child: Text(
                                     "Тонкое",
-                                    style: TextStyle(fontSize: width*0.0095),
+                                    style: TextStyle(fontSize: width*0.03),
                                   ),
                                 ),
                               ),
@@ -604,24 +605,15 @@ class _TovarPageState extends State<TovarPage> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 90, bottom: 12, right: 12, top: 12),
-                          child: Container(
-                            width: 149,
-                            height: 44,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              color: const Color(0xffFF7010),
-                            ),
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Text(
-                                  "В корзину",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 12),
-                                )),
-                          ),
+                        Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xffFF7010),elevation: 0),
+                              onPressed: () {},
+                              child: const Text(
+                                "В корзину",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12),
+                              )),
                         )
                       ],
                     ),
