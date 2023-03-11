@@ -18,8 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    BasketProvider providerWatch = context.watch<BasketProvider>();
-    BasketProvider providerRead = context.read<BasketProvider>();
+    BasketProvider provider= Provider.of<BasketProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => BasketProvider(),
       builder: (context, child) {
@@ -35,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                         height: size.height * 0.7,
                         width: size.width,
-                        child: _orderList()),
+                        child: _orderList(size)),
                     divider(),
                     _promoKod(),
                     text("Итого:", 20.0, Colors.orange,
@@ -117,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             child: textFormField(TextInputType.name, "Имя", "",
-                                Colors.white, providerWatch.userNameController),
+                                Colors.white, provider.userNameController),
                           ),
                           // phone number
                           TextFormField(
@@ -142,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                                   "Почта",
                                   "",
                                   Colors.white,
-                                  providerWatch.emailController)),
+                                  provider.emailController)),
                         ],
                       ),
                     ),
@@ -158,11 +157,11 @@ class _HomePageState extends State<HomePage> {
                               style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30),
-                                  backgroundColor: providerWatch.isDelivery
+                                  backgroundColor: provider.isDelivery
                                       ? Colors.orange.shade700
                                       : Colors.white),
                               onPressed: () {
-                                providerRead.changeState();
+                                provider.changeState();
                               },
                               child: const Text(
                                 "Доставка",
@@ -173,11 +172,11 @@ class _HomePageState extends State<HomePage> {
                               style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30),
-                                  backgroundColor: providerWatch.isPickUp
+                                  backgroundColor: provider.isPickUp
                                       ? Colors.orange.shade700
                                       : Colors.white),
                               onPressed: () {
-                                providerRead.changeState();
+                                provider.changeState();
                               },
                               child: const Text(
                                 "Самовызов",
@@ -188,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Visibility(
-                        visible: providerWatch.isDelivery,
+                        visible: provider.isDelivery,
                         child: Column(
                           children: [
                             Padding(
@@ -205,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                           "Улица",
                                           "Пушкина",
                                           Colors.white,
-                                          providerWatch.streetNameController)),
+                                          provider.streetNameController)),
                                   SizedBox(
                                       width: size.width * 0.2,
                                       child: textFormField(
@@ -213,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                                           "Дом",
                                           "1A",
                                           Colors.white,
-                                          providerWatch.homeNameController))
+                                          provider.homeNameController))
                                 ],
                               ),
                             ),
@@ -231,7 +230,7 @@ class _HomePageState extends State<HomePage> {
                                           "Подъезд",
                                           "1",
                                           Colors.white,
-                                          providerWatch.entranceNumController)),
+                                          provider.entranceNumController)),
                                   SizedBox(
                                       width: size.width * 0.4,
                                       child: textFormField(
@@ -239,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                                           "Етаж",
                                           "2",
                                           Colors.white,
-                                          providerWatch.floorNumController))
+                                          provider.floorNumController))
                                 ],
                               ),
                             ),
@@ -257,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                           "Квартира",
                                           "3",
                                           Colors.white,
-                                          providerWatch
+                                          provider
                                               .apartmentNumController)),
                                   SizedBox(
                                       width: size.width * 0.43,
@@ -266,14 +265,14 @@ class _HomePageState extends State<HomePage> {
                                           "Домофон",
                                           "0000",
                                           Colors.white,
-                                          providerWatch.intercomNumController))
+                                          provider.intercomNumController))
                                 ],
                               ),
                             ),
                           ],
                         )),
                     Visibility(
-                        visible: providerWatch.isPickUp,
+                        visible: provider.isPickUp,
                         child: Column(
                           children: [
                             Padding(
@@ -285,28 +284,28 @@ class _HomePageState extends State<HomePage> {
                                       "Ресторан",
                                       "Выберите ресторан",
                                       Colors.white,
-                                      providerWatch.restaurantNameController)),
+                                      provider.restaurantNameController)),
                             )
                           ],
                         )),
                     text("На когда приготовить", 15.0, Colors.black38,
                         MainAxisAlignment.start),
-                    _checkBox(providerWatch.isFast, () {
-                      providerRead.changeDeleverytime();
+                    _checkBox(provider.isFast, () {
+                      provider.changeDeleverytime();
                     }, "Как можно скорее"),
-                    _checkBox(providerWatch.inTime, () {
-                      providerRead.changeDeleverytime();
+                    _checkBox(provider.inTime, () {
+                      provider.changeDeleverytime();
                     }, "По времени"),
                     divider(),
                     text("Оплата", 18.0, Colors.black, MainAxisAlignment.start),
-                    _checkBox(providerWatch.isCash, () {
-                      providerRead.changeToCash();
+                    _checkBox(provider.isCash, () {
+                      provider.changeToCash();
                     }, "Наличными"),
-                    _checkBox(providerWatch.isCard, () {
-                      providerRead.changetoCard();
+                    _checkBox(provider.isCard, () {
+                      provider.changetoCard();
                     }, "Картой"),
-                    _checkBox(providerWatch.isApplePay, () {
-                      providerRead.changeToApplePay();
+                    _checkBox(provider.isApplePay, () {
+                      provider.changeToApplePay();
                     }, "Apple Pay"),
                     divider(),
                     text("Сдача", 18.0, Colors.black, MainAxisAlignment.start),
@@ -314,7 +313,7 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 20, horizontal: 15),
                         child: textFormField(TextInputType.number, "", "0",
-                            Colors.white, providerWatch.changeNumController)),
+                            Colors.white, provider.changeNumController)),
                     text("Комментарий", 18.0, Colors.black,
                         MainAxisAlignment.start),
                     Padding(
@@ -402,32 +401,49 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ListView _orderList() {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: ListTile(
-                title: const Text(""),
-                leading: Container(
-                  height: MediaQuery.of(context).size.height * 0.30,
-                  width: MediaQuery.of(context).size.width * 0.20,
-                  decoration: const BoxDecoration(
-                      /*image: DecorationImage(
-                          image: NetworkImage(_list[index].imgUrl.toString()),
-                          fit: BoxFit.fill)*/
-                      ),
-                ),
-              )),
-        );
-      },
-    );
+  ListView _orderList(Size size) {
+    return  ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  height: size.height * 0.15,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Row(
+                                    children: [
+                                     const Text("Api RASM"),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          const Text("""Karoche botta API 
+dan malumot va product 
+name keladi"""),
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              style: ElevatedButton.styleFrom(
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      const Color(0xffFFEEE2)),
+                                              child: const Text(
+                                                "API narx",
+                                                style: TextStyle(
+                                                    color: Colors.orange),
+                                              ))
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
   }
 }
