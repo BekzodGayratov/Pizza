@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pizza/core/router/router.dart';
 import 'package:pizza/provider/basket_provider.dart';
-import 'package:pizza/view/auth/register_page.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: RegisterPage(),
+    return MaterialApp(
+      onGenerateRoute: RouteGenerator.router.onGenerate,
+      initialRoute: '/',
     );
   }
 }
