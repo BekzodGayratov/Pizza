@@ -267,7 +267,7 @@ class _TovarPageState extends State<TovarPage> {
                         ),
                       ]),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    padding: EdgeInsets.symmetric(horizontal: heigth*0.08),
                     child: Card(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -278,7 +278,7 @@ class _TovarPageState extends State<TovarPage> {
                               context.read<TovarProvider>().burn();
                             }),
                             child: Container(
-                              width: 150,
+                               width: width*0.5,
                               height: 44,
                               // ignore: sort_child_properties_last
                               child:  Center(
@@ -297,14 +297,14 @@ class _TovarPageState extends State<TovarPage> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 50),
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 13, horizontal: width*0.05),
                             child: InkWell(
                               onTap: () {
                                 context.read<TovarProvider>().tenkoe();
                               },
                               child: Container(
-                                width: 80,
+                                width: width*0.3,
                                 height: 44,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6),
@@ -342,11 +342,11 @@ class _TovarPageState extends State<TovarPage> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: MediaQuery.of(context).size.height * 0.07,
                               // ignore: sort_child_properties_last
-                              child: const Center(
+                              child: Center(
                                 child: Text(
                                   "20 см",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 14),
+                                      color: Colors.black, fontSize: width*0.025),
                                 ),
                               ),
                               decoration: BoxDecoration(
@@ -380,10 +380,10 @@ class _TovarPageState extends State<TovarPage> {
                                       ? Colors.white
                                       : const Color(0xffFF7010),
                                 ),
-                                child: const Center(
+                                child:  Center(
                                   child: Text(
                                     "28 см",
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(fontSize: width*0.025),
                                   ),
                                 ),
                               ),
@@ -410,10 +410,10 @@ class _TovarPageState extends State<TovarPage> {
                                 width: MediaQuery.of(context).size.width * 0.2,
                                 height:
                                     MediaQuery.of(context).size.height * 0.07,
-                                child: const Center(
+                                child:  Center(
                                   child: Text(
                                     "33 см",
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(fontSize: width*0.025),
                                   ),
                                 ),
                               ),
@@ -521,63 +521,63 @@ class _TovarPageState extends State<TovarPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
-                          children: const [
+                          children:  [
                             Text(
                               "Моцарелла",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                                  TextStyle(color: Colors.black, fontSize: width*0.025),
                             ),
                             Text(
                               "59 ₽",
                               style: TextStyle(
-                                  color: Color(0xffFF7010), fontSize: 14),
+                                  color: const Color(0xffFF7010),fontSize: width*0.025),
                             ),
                           ],
                         ),
                         Column(
-                          children: const [
+                          children:  [
                             Text(
                               "Шампиньоны",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                                  TextStyle(color: Colors.black, fontSize: width*0.025),
                             ),
                             Text(
                               "59 ₽",
                               style: TextStyle(
-                                  color: Color(0xffFF7010), fontSize: 14),
+                                  color: const Color(0xffFF7010), fontSize: width*0.025),
                             ),
                           ],
                         ),
                         Column(
-                          children: const [
+                          children:  [
                             Text(
                               "Красный лук",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                                  TextStyle(color: Colors.black, fontSize: width*0.025),
                             ),
-                            Text(
+                             Text(
                               "59 ₽",
                               style: TextStyle(
-                                  color: Color(0xffFF7010), fontSize: 14),
+                                  color: const Color(0xffFF7010), fontSize: width*0.025),
                             ),
                           ],
                         ),
                         Column(
-                          children: const [
+                          children:  [
                             Text(
                               "Сладкий",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                                  TextStyle(color: Colors.black, fontSize: width*0.025),
                             ),
                             Text(
                               "перец",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                                  TextStyle(color: Colors.black, fontSize: width*0.025),
                             ),
                             Text(
                               "59 ₽",
                               style: TextStyle(
-                                  color: Color(0xffFF7010), fontSize: 14),
+                                  color: const Color(0xffFF7010), fontSize: width*0.025),
                             ),
                           ],
                         ),
