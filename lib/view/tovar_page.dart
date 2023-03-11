@@ -267,7 +267,7 @@ class _TovarPageState extends State<TovarPage> {
                         ),
                       ]),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: heigth*0.08),
+                    padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Card(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -278,7 +278,7 @@ class _TovarPageState extends State<TovarPage> {
                               context.read<TovarProvider>().burn();
                             }),
                             child: Container(
-                               width: width*0.5,
+                               width: 175,
                               height: 44,
                               // ignore: sort_child_properties_last
                               child:  Center(
@@ -298,13 +298,13 @@ class _TovarPageState extends State<TovarPage> {
                           ),
                           Padding(
                             padding:  EdgeInsets.symmetric(
-                                vertical: 13, horizontal: width*0.05),
+                                vertical: 13, horizontal: 20),
                             child: InkWell(
                               onTap: () {
                                 context.read<TovarProvider>().tenkoe();
                               },
                               child: Container(
-                                width: width*0.3,
+                                width: 116,
                                 height: 44,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(6),
