@@ -13,9 +13,18 @@ class BasketProvider extends ChangeNotifier {
   TextEditingController apartmentNumController = TextEditingController();
   TextEditingController intercomNumController = TextEditingController();
   TextEditingController changeNumController = TextEditingController();
+  TextEditingController restaurantNameController = TextEditingController();
 
   // VARIABLES
-  bool isClicked=false;
+  bool isCash=false;
+  bool isCard = false;
+  bool isApplePay=false;
+
+
+  bool isFast=true;
+  bool inTime= false;
+
+
   bool isDelivery = true;
   bool isPickUp = false;
 
@@ -29,4 +38,56 @@ class BasketProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void changeDeleverytime(){
+    if (isFast && inTime== false) {
+      isFast= !isFast;
+      inTime = !inTime;
+    } else if(isFast == false && inTime){
+      inTime = !inTime;
+      isFast= !isFast;
+    }
+    notifyListeners();
+  }
+  
+  void changeToCash(){
+    if (isCash) {
+      isCash = !isCash;
+      isCard = false;
+      isApplePay = false;
+    }else{
+      isCash = !isCash;
+      isCard = false;
+      isApplePay = false;
+    }
+    notifyListeners();
+  }
+
+  void changetoCard(){
+    if (isCard) {
+      isCard = !isCard;
+      isCash = false;
+      isApplePay = false;
+    }else{
+      isCard = !isCard;
+      isCash = false;
+      isApplePay = false;
+    }
+    notifyListeners();
+  }
+
+  void changeToApplePay(){
+    if (isApplePay) {
+      isApplePay = !isApplePay;
+      isCard = false;
+      isCash = false;
+    } else {
+      isApplePay = !isApplePay;
+      isCard = false;
+      isCash = false;
+    }
+    notifyListeners();
+  }
+  
+
 }
