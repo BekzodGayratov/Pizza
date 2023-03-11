@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    BasketProvider provider= Provider.of<BasketProvider>(context);
+    BasketProvider provider = Provider.of<BasketProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => BasketProvider(),
       builder: (context, child) {
@@ -28,8 +28,10 @@ class _HomePageState extends State<HomePage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    text("Ваш заказ", 18.0, Colors.black,
-                        MainAxisAlignment.start),
+                    Text(
+                      "Ваш заказ",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                     // this is for list
                     SizedBox(
                         height: size.height * 0.7,
@@ -256,8 +258,7 @@ class _HomePageState extends State<HomePage> {
                                           "Квартира",
                                           "3",
                                           Colors.white,
-                                          provider
-                                              .apartmentNumController)),
+                                          provider.apartmentNumController)),
                                   SizedBox(
                                       width: size.width * 0.43,
                                       child: textFormField(
@@ -402,48 +403,49 @@ class _HomePageState extends State<HomePage> {
   }
 
   ListView _orderList(Size size) {
-    return  ListView.builder(
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  height: size.height * 0.15,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Row(
-                                    children: [
-                                     const Text("Api RASM"),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          const Text("""Karoche botta API 
-dan malumot va product 
-name keladi"""),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              style: ElevatedButton.styleFrom(
-                                                  elevation: 0,
-                                                  backgroundColor:
-                                                      const Color(0xffFFEEE2)),
-                                              child: const Text(
-                                                "API narx",
-                                                style: TextStyle(
-                                                    color: Colors.orange),
-                                              ))
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+    return ListView.builder(
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            height: size.height * 0.15,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+            child: Row(
+              children: [
+                const Text("Api RASM"),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.5,
+                      child: const Text(
+                        """Karoche botta API 
+                    dan malumot va product 
+                    name keladiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii""",
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: const Color(0xffFFEEE2)),
+                        child: const Text(
+                          "API narx",
+                          style: TextStyle(color: Colors.orange),
+                        ))
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

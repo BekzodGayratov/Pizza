@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizza/provider/basket_provider.dart';
-import 'package:pizza/view/home_page.dart';
+import 'package:pizza/view/auth/register_page.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: RegisterPage(),
     );
   }
 }
