@@ -73,7 +73,7 @@ class _PitsaPageState extends State<PitsaPage> {
                                 fit: BoxFit.fill)),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 25),
+                        padding: const EdgeInsets.only(left: 10),
                         child: InkWell(
                           child: Container(
                             width: 48,
@@ -89,7 +89,7 @@ class _PitsaPageState extends State<PitsaPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                      left: 25,
+                      left: 10,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -137,27 +137,24 @@ class _PitsaPageState extends State<PitsaPage> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        child: Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Card(
-                            child: IconButton(
-                              onPressed: () {
-                                context.read<TovarProvider>().burnOut(1);
-                              },
-                              icon: Image.asset("assets/vecctor.png",
-                                  fit: BoxFit.fill,
-                                  color: context
-                                          .watch<TovarProvider>()
-                                          .isLoading[1]
-                                      ? const Color(0xffFF7010)
-                                      : Colors.black),
-                            ),
+                      Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Card(
+                          child: IconButton(
+                            onPressed: () {
+                              context.read<TovarProvider>().burnOut(1);
+                            },
+                            icon: Image.asset("assets/vecctor.png",
+                                fit: BoxFit.fill,
+                                color: context
+                                        .watch<TovarProvider>()
+                                        .isLoading[1]
+                                    ? const Color(0xffFF7010)
+                                    : Colors.black),
                           ),
                         ),
                       ),
