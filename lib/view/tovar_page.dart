@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:pizza/provider/tovar_provider.dart';
 import 'package:provider/provider.dart';
 
-class TovarPage extends StatefulWidget {
-  const TovarPage({super.key});
+class PitsaPage extends StatefulWidget {
+  const PitsaPage({super.key});
 
   @override
-  State<TovarPage> createState() => _TovarPageState();
+  State<PitsaPage> createState() => _PitsaPageState();
 }
 
-class _TovarPageState extends State<TovarPage> {
+class _PitsaPageState extends State<PitsaPage> {
   @override
   Widget build(BuildContext context) {
    
@@ -27,6 +25,7 @@ class _TovarPageState extends State<TovarPage> {
 
   Scaffold _scaffold(BuildContext context) {
      double width = MediaQuery.of(context).size.width;
+    // ignore: unused_local_variable
     double heigth = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -267,7 +266,7 @@ class _TovarPageState extends State<TovarPage> {
                         ),
                       ]),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    padding:const EdgeInsets.symmetric(horizontal: 15),
                     child: Card(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -297,7 +296,7 @@ class _TovarPageState extends State<TovarPage> {
                             ),
                           ),
                           Padding(
-                            padding:  EdgeInsets.symmetric(
+                            padding:const  EdgeInsets.symmetric(
                                 vertical: 13, horizontal: 20),
                             child: InkWell(
                               onTap: () {
