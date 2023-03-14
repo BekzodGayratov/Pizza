@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -6,6 +5,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xffF9F9F9),
       appBar: AppBar(
@@ -30,8 +30,8 @@ class RegisterPage extends StatelessWidget {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 176.0,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
               ),
               const Text(
                 "Вход в аккаунт",
@@ -40,8 +40,8 @@ class RegisterPage extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(
-                height: 16.0,
+              SizedBox(
+                height: size.height * 0.02,
               ),
               const Text(
                 "Сможете быстро оформлять заказы,",
@@ -56,11 +56,11 @@ class RegisterPage extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
+                children: [
                   SizedBox(
-                    width: 20.0,
+                    width: size.width * 0.05,
                   ),
-                  Text(
+                  const Text(
                     "Номер телефона",
                     style: TextStyle(
                         fontSize: 12.0,
@@ -69,28 +69,33 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 8.0,
+              SizedBox(
+                height: size.height * 0.01,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: TextField(
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                child: const TextField(
                   decoration: InputDecoration(
                       hintText: "+7", border: OutlineInputBorder()),
                 ),
               ),
-              const SizedBox(
-                height: 20.0,
+              SizedBox(
+                height: size.height * 0.02,
               ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 210.0),
-                      backgroundColor: const Color(0xffFF7010)),
-                  onPressed: () {},
-                  child: const Text("Войти",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 14.0))),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.045),
+                child: SizedBox(
+                  height: size.height * 0.06,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffFF7010)),
+                      onPressed: () {},
+                      child: const Text("Войти",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 14.0))),
+                ),
+              ),
               const SizedBox(
                 height: 12.0,
               ),
@@ -102,7 +107,9 @@ class RegisterPage extends StatelessWidget {
                 "персональных данных и пользовательским соглашением",
                 style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400),
               ),
-              const SizedBox(height: 234.0,)
+              const SizedBox(
+                height: 234.0,
+              )
             ],
           )),
         ]),

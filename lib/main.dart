@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: RouteGenerator.router.onGenerate,
-      initialRoute: '/',
+      initialRoute: 'register',
     );
   }
 }
