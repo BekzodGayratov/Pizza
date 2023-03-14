@@ -65,8 +65,8 @@ class _PitsaPageState extends State<PitsaPage> {
                         ),
                       ),
                       Container(
-                        width: 260,
-                        height: 260,
+                        width: width*0.5,
+                        height: heigth*0.3,
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage("assets/pizza.png"),
