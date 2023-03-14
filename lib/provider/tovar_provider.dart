@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TovarProvider extends ChangeNotifier {
-  HomeProvider() {}
+
   List<bool> isLoading = [true, true, true, true];
   bool w = false;
   bool v = false;
