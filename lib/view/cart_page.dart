@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizza/core/helper/mask_input_formatter.dart';
-import 'package:pizza/provider/basket_provider.dart';
+import 'package:pizza/provider/cart_provider.dart';
 import 'package:provider/provider.dart';
 import '../core/widgets/divider_widget.dart';
 import '../core/widgets/text_form_field_widget.dart';
@@ -17,11 +17,29 @@ class _HomePageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    BasketProvider provider = Provider.of<BasketProvider>(context);
+    CartProvider provider = Provider.of<CartProvider>(context);
     return ChangeNotifierProvider(
-      create: (context) => BasketProvider(),
+      create: (context) => CartProvider(),
       builder: (context, child) {
         return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0.0,
+              iconTheme: const IconThemeData(color: Colors.black),
+              actions: [
+                IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.menu_outlined))
+              ],
+              leading: Image.asset("assets/pizza.png"),
+              title: const Text(
+                "Куда пицца",
+                style: TextStyle(
+                  color: Color.fromRGBO(25, 25, 25, 1),
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
             backgroundColor: const Color(0xffE5E5E5),
             body: SafeArea(
               child: SingleChildScrollView(
@@ -65,8 +83,6 @@ class _HomePageState extends State<CartPage> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: const Center(
                                       child: ListTile(
-                                    /* leading: Image.network(
-                                        _list[index].imgUrl.toString())*/
                                     title: Text(""),
                                     subtitle: Text(""),
                                   ))),
@@ -424,20 +440,36 @@ class _HomePageState extends State<CartPage> {
                       child: const Text(
                         """Karoche botta API 
                     dan malumot va product 
-                    name keladiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii""",
+                    name keladiii""",
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            backgroundColor: const Color(0xffFFEEE2)),
-                        child: const Text(
-                          "API narx",
-                          style: TextStyle(color: Colors.orange),
-                        ))
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          height: size.height * 0.04,
+                          width: size.width * 0.3,
+                          child: Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.remove,color: Colors.orange,)),
+                              const Text("1",style: TextStyle(color: Colors.orange),),
+                              IconButton(
+                                  onPressed: () {}, icon: const Icon(Icons.add,color: Colors.orange,))
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.04,
+                          width: size.width * 0.2,
+                          
+                          child: const Text("IP NARX",style: TextStyle(color: Colors.orange),),
+                        )
+                      ],
+                    )
                   ],
                 )
               ],

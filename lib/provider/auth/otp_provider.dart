@@ -22,8 +22,9 @@ class OtpProvider extends ChangeNotifier {
         isLoading = false;
       } else {
         showPizzaErrorMessage(response);
+        isLoading = false;
       }
+      notifyListeners();
     });
-    notifyListeners();
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BasketProvider extends ChangeNotifier {
+class CartProvider extends ChangeNotifier {
   // CONTROLLERS
   TextEditingController promocodController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
@@ -32,22 +32,24 @@ class BasketProvider extends ChangeNotifier {
     if (isDelivery && isPickUp == false) {
       isPickUp = !isPickUp;
       isDelivery = !isDelivery;
+      notifyListeners();
     } else if (isDelivery == false && isPickUp) {
       isDelivery = !isDelivery;
       isPickUp = !isPickUp;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   void changeDeleverytime(){
     if (isFast && inTime== false) {
       isFast= !isFast;
       inTime = !inTime;
+      notifyListeners();
     } else if(isFast == false && inTime){
       inTime = !inTime;
       isFast= !isFast;
+      notifyListeners();
     }
-    notifyListeners();
   }
   
   void changeToCash(){
@@ -55,12 +57,13 @@ class BasketProvider extends ChangeNotifier {
       isCash = !isCash;
       isCard = false;
       isApplePay = false;
+      notifyListeners();
     }else{
       isCash = !isCash;
       isCard = false;
       isApplePay = false;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   void changetoCard(){
@@ -68,12 +71,13 @@ class BasketProvider extends ChangeNotifier {
       isCard = !isCard;
       isCash = false;
       isApplePay = false;
+      notifyListeners();
     }else{
       isCard = !isCard;
       isCash = false;
       isApplePay = false;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   void changeToApplePay(){
@@ -81,12 +85,13 @@ class BasketProvider extends ChangeNotifier {
       isApplePay = !isApplePay;
       isCard = false;
       isCash = false;
+      notifyListeners();
     } else {
       isApplePay = !isApplePay;
       isCard = false;
       isCash = false;
+      notifyListeners();
     }
-    notifyListeners();
   }
   
 

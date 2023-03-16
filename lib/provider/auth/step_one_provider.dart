@@ -16,7 +16,7 @@ class StepOneProvider extends ChangeNotifier {
         .then((dynamic response) {
       if (response is StepOneModel) {
         isLoading = false;
-        Navigator.pushNamed(context, "otp", arguments: response.token);
+        Navigator.pushNamed(context, "otp", arguments:[response.token,phoneNumberController.text]);
         showPizzaErrorMessage("OTP CODE: ${response.otp}");
       } else {
         showPizzaErrorMessage(response);

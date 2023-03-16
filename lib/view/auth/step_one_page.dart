@@ -12,9 +12,11 @@ class StepOnePage extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (context) => StepOneProvider(),
         builder: (context, child) => Scaffold(
+          resizeToAvoidBottomInset: false,
               backgroundColor: const Color(0xffF9F9F9),
               appBar: AppBar(
                 backgroundColor: Colors.white,
+                elevation: 0.0,
                 iconTheme: const IconThemeData(color: Colors.black),
                 actions: [
                   IconButton(
@@ -30,117 +32,112 @@ class StepOnePage extends StatelessWidget {
                   ),
                 ),
               ),
-              body: SingleChildScrollView(
-                child: Column(children: [
-                  Center(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                      ),
-                      const Text(
-                        "Вход в аккаунт",
-                        style: TextStyle(
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      const Text(
-                        "Сможете быстро оформлять заказы,",
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w400),
-                      ),
-                      const Text(
-                        "использовать бонусы",
-                        style: TextStyle(
-                            fontSize: 14.0, fontWeight: FontWeight.w400),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.05,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                ),
+                const Text(
+                  "Вход в аккаунт",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                const Text(
+                  "Сможете быстро оформлять заказы,",
+                  style: TextStyle(
+                      fontSize: 14.0, fontWeight: FontWeight.w400),
+                ),
+                const Text(
+                  "использовать бонусы",
+                  style: TextStyle(
+                      fontSize: 14.0, fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: size.width * 0.05,
+                    ),
+                    const Text(
+                      "Номер телефона",
+                      style: TextStyle(
+                          fontSize: 12.0,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffA5A5A5)),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                  child: TextFormField(
+                    controller: context
+                        .watch<StepOneProvider>()
+                        .phoneNumberController,
+                    decoration: const InputDecoration(
+                        hintText: "+7", border: OutlineInputBorder()),
+                  ),
+                ),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: size.width * 0.045),
+                  child: SizedBox(
+                    height: size.height * 0.06,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xffFF7010)),
+                        onPressed: () {
+                          context.read<StepOneProvider>().stepOne(context);
+                        },
+                        child: Visibility(
+                          replacement: const Center(
+                            child: PizzaLoadingWidget(),
                           ),
-                          const Text(
-                            "Номер телефона",
+                          visible:
+                              !context.watch<StepOneProvider>().isLoading,
+                          child: const Text(
+                            "Войти",
                             style: TextStyle(
-                                fontSize: 12.0,
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xffA5A5A5)),
+                                fontSize: 14.0),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size.width * 0.05),
-                        child: TextFormField(
-                          controller: context
-                              .watch<StepOneProvider>()
-                              .phoneNumberController,
-                          decoration: const InputDecoration(
-                              hintText: "+7", border: OutlineInputBorder()),
-                        ),
-                      ),
-                      SizedBox(
-                        height: size.height * 0.02,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size.width * 0.045),
-                        child: SizedBox(
-                          height: size.height * 0.06,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xffFF7010)),
-                              onPressed: () {
-                                context.read<StepOneProvider>().stepOne(context);
-                              },
-                              child: Visibility(
-                                replacement: const Center(
-                                  child: PizzaLoadingWidget(),
-                                ),
-                                visible:
-                                    !context.watch<StepOneProvider>().isLoading,
-                                child: const Text(
-                                  "Войти",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14.0),
-                                ),
-                              )),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 12.0,
-                      ),
-                      const Text(
-                        "Продолжая, вы соглашаетесь со сбором и обработкой ",
-                        style: TextStyle(
-                            fontSize: 12.0, fontWeight: FontWeight.w400),
-                      ),
-                      const Text(
-                        "персональных данных и пользовательским соглашением",
-                        style: TextStyle(
-                            fontSize: 12.0, fontWeight: FontWeight.w400),
-                      ),
-                      const SizedBox(
-                        height: 234.0,
-                      )
-                    ],
-                  )),
-                ]),
-              ),
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  height: 12.0,
+                ),
+                const Text(
+                  "Продолжая, вы соглашаетесь со сбором и обработкой ",
+                  style: TextStyle(
+                      fontSize: 12.0, fontWeight: FontWeight.w400),
+                ),
+                const Text(
+                  "персональных данных и пользовательским соглашением",
+                  style: TextStyle(
+                      fontSize: 12.0, fontWeight: FontWeight.w400),
+                ),
+                const SizedBox(
+                  height: 234.0,
+                ),
+              ]),
             ));
   }
 }

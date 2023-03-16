@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pizza/core/router/router.dart';
 import 'package:pizza/provider/auth/step_one_provider.dart';
-import 'package:pizza/provider/basket_provider.dart';
+import 'package:pizza/provider/cart_provider.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (context) => BasketProvider(),
+        create: (context) => CartProvider(),
       ),
       ChangeNotifierProvider(
         create: (context) => StepOneProvider(),
@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: RouteGenerator.router.onGenerate,
-      initialRoute: 'step_one',
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'cart',
     );
   }
 }
