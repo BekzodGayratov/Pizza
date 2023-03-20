@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:pizza/core/config/dio_catch_config.dart';
 import 'package:pizza/core/config/dio_config.dart';
 import 'package:pizza/core/constants/end_points.dart';
+import 'package:pizza/core/extensions/cut_probel_ext.dart';
 import 'package:pizza/data/model/auth/step_one_model.dart';
 
 class AuthService {
@@ -10,7 +11,7 @@ class AuthService {
       Response response =
           await DioConfig.createRequest().post(PizzaEndPoints.stepOne, data: {
         "method": "step.one",
-        "params": {"phone": phoneNumber}
+        "params": {"phone": phoneNumber.cutProbel()}
       });
 
       if (response.statusCode == 200) {

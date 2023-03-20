@@ -6,3 +6,8 @@ class MaskInput {
   MaskTextInputFormatter phoneController = MaskTextInputFormatter(
       mask: "+998 ## ###-##-##", type: MaskAutoCompletionType.lazy);
 }
+
+class StepOneMaskInput {
+  MaskTextInputFormatter phoneNumber = MaskTextInputFormatter(
+      type: MaskAutoCompletionType.lazy, mask: '## ### ## ##');
+}

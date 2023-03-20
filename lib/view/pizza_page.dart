@@ -20,7 +20,6 @@ class _PitsaPageState extends State<PitsaPage> {
         return _scaffold(context);
       },
     );
-    ;
   }
 
   Scaffold _scaffold(BuildContext context) {

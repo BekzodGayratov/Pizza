@@ -12,7 +12,7 @@ class DioHandleCatchError {
       case DioErrorType.unknown:
         return "noConnection";
       default:
-        return "smtWentWrong";
+        return "some thing went wrong";
     }
   }
 }

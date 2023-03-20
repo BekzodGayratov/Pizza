@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizza/core/helper/mask_input_formatter.dart';
 import 'package:pizza/core/helper/pizza_loading_widget.dart';
 import 'package:pizza/provider/auth/step_one_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,11 +19,11 @@ class StepOnePage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 elevation: 0.0,
                 iconTheme: const IconThemeData(color: Colors.black),
+                leading: Image.asset("assets/pizza.png"),
                 actions: [
                   IconButton(
                       onPressed: () {}, icon: const Icon(Icons.menu_outlined))
                 ],
-                leading: Image.asset("assets/pizza.png"),
                 title: const Text(
                   "Куда пицца",
                   style: TextStyle(
@@ -84,6 +85,8 @@ class StepOnePage extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: size.width * 0.05),
                   child: TextFormField(
+                    inputFormatters: [StepOneMaskInput().phoneNumber],
+                    keyboardType: TextInputType.phone,
                     controller: context
                         .watch<StepOneProvider>()
                         .phoneNumberController,
